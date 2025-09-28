@@ -177,6 +177,22 @@ if (admins.length === 0) {
     writeData(ADMINS_FILE, admins);
 }
 
+// Initialize default products
+const posts = readData(POSTS_FILE);
+if (posts.length === 0) {
+    posts.push(
+        { id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые', photos: ['https://via.placeholder.com/150'], condition: 8.5, size: 'M' },
+        { id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая', photos: ['https://via.placeholder.com/150'], condition: 9.0, size: 'L' },
+        { id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые', photos: ['https://via.placeholder.com/150'], condition: 7.2, size: 'S' },
+        { id: '4', title: 'Куртка 8', price: 122, description: 'Зеленого цвета, теплая', photos: ['https://via.placeholder.com/150'], condition: 6.8, size: 'XL' },
+        { id: '5', title: 'Джинсы 3', price: 5000, description: 'Синего цвета, прямые', photos: ['https://via.placeholder.com/150'], condition: 8.9, size: 'M' },
+        { id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая', photos: ['https://via.placeholder.com/150'], condition: 5.5, size: 'M' },
+        { id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые', photos: ['https://via.placeholder.com/150'], condition: 9.2, size: 'L' },
+        { id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая', photos: ['https://via.placeholder.com/150'], condition: 7.7, size: 'S' }
+    );
+    writeData(POSTS_FILE, posts);
+}
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
