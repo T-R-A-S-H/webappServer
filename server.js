@@ -69,12 +69,12 @@ function initializeData() {
 }
 
 // Routes for Posts
-app.get('/posts', (req, res) => {
+app.get('/api/posts', (req, res) => {
     const posts = readData(POSTS_FILE);
     res.json(posts);
 });
 
-app.post('/posts', (req, res) => {
+app.post('/api/posts', (req, res) => {
     const posts = readData(POSTS_FILE);
     const newPost = { ...req.body, id: Date.now().toString() };
     posts.push(newPost);
@@ -82,7 +82,7 @@ app.post('/posts', (req, res) => {
     res.json(newPost);
 });
 
-app.delete('/posts/:id', (req, res) => {
+app.delete('/api/posts/:id', (req, res) => {
     const posts = readData(POSTS_FILE);
     const filteredPosts = posts.filter(p => p.id !== req.params.id);
     writeData(POSTS_FILE, filteredPosts);
@@ -90,12 +90,12 @@ app.delete('/posts/:id', (req, res) => {
 });
 
 // Routes for Users
-app.get('/users', (req, res) => {
+app.get('/api/users', (req, res) => {
     const users = readData(USERS_FILE);
     res.json(users);
 });
 
-app.post('/users', (req, res) => {
+app.post('/api/users', (req, res) => {
     const users = readData(USERS_FILE);
     const existingUser = users.find(u => u.id === req.body.id);
     if (!existingUser) {
@@ -106,12 +106,12 @@ app.post('/users', (req, res) => {
 });
 
 // Routes for Orders
-app.get('/orders', (req, res) => {
+app.get('/api/orders', (req, res) => {
     const orders = readData(ORDERS_FILE);
     res.json(orders);
 });
 
-app.post('/orders', (req, res) => {
+app.post('/api/orders', (req, res) => {
     const orders = readData(ORDERS_FILE);
     const newOrder = { ...req.body, id: Date.now().toString() };
     orders.push(newOrder);
@@ -119,7 +119,7 @@ app.post('/orders', (req, res) => {
     res.json(newOrder);
 });
 
-app.put('/orders/:id', (req, res) => {
+app.put('/api/orders/:id', (req, res) => {
     const orders = readData(ORDERS_FILE);
     const index = orders.findIndex(o => o.id === req.params.id);
     if (index !== -1) {
@@ -131,19 +131,19 @@ app.put('/orders/:id', (req, res) => {
     }
 });
 
-app.get('/orders/user/:userId', (req, res) => {
+app.get('/api/orders/user/:userId', (req, res) => {
     const orders = readData(ORDERS_FILE);
     const userOrders = orders.filter(o => o.userId === req.params.userId);
     res.json(userOrders);
 });
 
 // Routes for Admins
-app.get('/admins', (req, res) => {
+app.get('/api/admins', (req, res) => {
     const admins = readData(ADMINS_FILE);
     res.json(admins);
 });
 
-app.post('/admins', (req, res) => {
+app.post('/api/admins', (req, res) => {
     const admins = readData(ADMINS_FILE);
     const existingAdmin = admins.find(a => a.username === req.body.username);
     if (!existingAdmin) {
@@ -153,7 +153,7 @@ app.post('/admins', (req, res) => {
     res.json(req.body);
 });
 
-app.put('/admins/:username', (req, res) => {
+app.put('/api/admins/:username', (req, res) => {
     const admins = readData(ADMINS_FILE);
     const index = admins.findIndex(a => a.username === req.params.username);
     if (index !== -1) {
@@ -165,7 +165,7 @@ app.put('/admins/:username', (req, res) => {
     }
 });
 
-app.delete('/admins/:username', (req, res) => {
+app.delete('/api/admins/:username', (req, res) => {
     const admins = readData(ADMINS_FILE);
     const filteredAdmins = admins.filter(a => a.username !== req.params.username);
     writeData(ADMINS_FILE, filteredAdmins);
