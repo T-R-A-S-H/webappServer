@@ -10,10 +10,10 @@ sudo a2enmod ssl proxy proxy_http rewrite
 sudo systemctl restart apache2
 ```
 
-### 2. Получение SSL сертификата Let's Encrypt
+### 2. Создание self-signed SSL сертификата
 ```bash
-sudo apt install certbot python3-certbot-apache
-sudo certbot --apache -d 62.113.111.50
+sudo mkdir -p /etc/ssl/private /etc/ssl/certs
+sudo openssl req -x509 -newkey rsa:4096 -keyout /etc/ssl/private/selfsigned.key -out /etc/ssl/certs/selfsigned.crt -days 365 -nodes -subj "/C=RU/ST=Moscow/L=Moscow/O=WebApp/CN=62.113.111.50"
 ```
 Следуйте инструкциям. Apache автоматически настроит HTTPS.
 
