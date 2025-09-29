@@ -13,7 +13,7 @@ sudo systemctl restart apache2
 ### 2. Получение SSL сертификата Let's Encrypt
 ```bash
 sudo apt install certbot python3-certbot-apache
-sudo certbot --apache -d 62.113.106.173
+sudo certbot --apache -d 62.113.111.50
 ```
 Следуйте инструкциям. Apache автоматически настроит HTTPS.
 
